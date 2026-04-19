@@ -1,0 +1,69 @@
+---
+import { testimonials } from '../data/site';
+---
+
+<section class="section-py bg-surface">
+  <div class="container-site">
+    <div class="max-w-3xl mb-12 md:mb-16 text-center mx-auto">
+      <span class="eyebrow mb-3 block">What homeowners say</span>
+      <h2 class="font-display font-medium text-3xl md:text-5xl tracking-tight">
+        Real reviews from Fairfield &amp; Solano County.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {testimonials.map((t) => (
+        <article class="testimonial-card">
+          <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="testimonial-quote">"{t.quote}"</blockquote>
+          <div class="testimonial-divider" aria-hidden="true"></div>
+          <cite class="testimonial-attrib">
+            <strong>{t.name}</strong> · {t.city} · {t.service}
+          </cite>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonial-card {
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: 0 1px 2px rgba(31, 27, 23, 0.06);
+    display: flex;
+    flex-direction: column;
+  }
+  .testimonial-stars {
+    color: var(--color-primary);
+    font-size: 1rem;
+    margin-bottom: 0.875rem;
+    letter-spacing: 2px;
+  }
+  .testimonial-quote {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.1875rem;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.45;
+  }
+  .testimonial-divider {
+    width: 40px;
+    height: 3px;
+    background: var(--color-primary);
+    margin: 1.25rem 0;
+    border-radius: 2px;
+  }
+  .testimonial-attrib {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-style: normal;
+  }
+  .testimonial-attrib strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+</style>

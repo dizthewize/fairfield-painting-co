@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import { serviceAreas } from '../../data/site';
+---
+
+<Layout
+  title="Service Areas · Fairfield Painting Co."
+  description="Proudly painting homes and businesses across Fairfield, Vacaville, Suisun City, Vallejo, and Napa. Check your city."
+  path="/service-areas"
+>
+  <Hero
+    eyebrow="Service areas"
+    headline="Where we paint."
+    subheadline="We're based in Fairfield and serve homeowners and small commercial properties across Solano County and into Napa. If your city is listed below, we're actively booking work there."
+    compact
+    primaryCta={{ label: 'Get a Free Estimate', href: '/contact#estimate' }}
+  />
+
+  <TrustSignalsBar />
+
+  <section class="section-py">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {serviceAreas.map((a) => (
+          <a href={`/service-areas/${a.slug}`} class="area-card">
+            <div class="area-card-image service-image-placeholder" aria-hidden="true"></div>
+            <div class="area-card-body">
+              <h2 class="area-card-city">{a.city}, CA</h2>
+              <p class="area-card-blurb">{a.blurb}</p>
+              <span class="area-card-link">Painting services in {a.city} →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <p class="areas-note">
+        Just outside our usual radius? We often accommodate larger projects a bit further afield —
+        give us a call.
+      </p>
+    </div>
+  </section>
+
+  <FinalCTA />
+</Layout>
+
+<style>
+  .area-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background: var(--color-bg);
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+    color: inherit;
+    transition: transform 200ms ease;
+  }
+  .area-card:hover { transform: translateY(-2px); }
+  .area-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-md);
+  }
+  .area-card-city {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.625rem;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.5rem;
+    color: var(--color-text);
+  }
+  .area-card-blurb {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0 0 1rem;
+  }
+  .area-card-link {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  .areas-note {
+    margin-top: 3rem;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    max-width: 640px;
+    margin-inline: auto;
+    line-height: 1.6;
+  }
+</style>

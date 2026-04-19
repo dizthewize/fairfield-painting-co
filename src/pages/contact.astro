@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LeadCaptureForm from '../components/LeadCaptureForm.astro';
+import TrustSignalsBar from '../components/TrustSignalsBar.astro';
+import { site } from '../data/site';
+---
+
+<Layout
+  title="Contact · Get a Free Estimate from Fairfield Painting Co."
+  description="Book a free estimate with a licensed Fairfield painter. Response within one business day."
+  path="/contact"
+>
+  <section class="pt-32 pb-10 md:pt-40 md:pb-16 bg-surface-dark text-text-inverse">
+    <div class="container-site max-w-4xl">
+      <span class="eyebrow mb-3 block">Contact</span>
+      <h1 class="font-display font-medium text-4xl md:text-6xl tracking-tight">
+        Get a free estimate.
+      </h1>
+      <p class="mt-5 text-lg text-text-inverse/85 max-w-2xl leading-relaxed">
+        Tell us about your project. We respond within one business day to schedule a free on-site
+        walk-through and color consultation.
+      </p>
+    </div>
+  </section>
+
+  <TrustSignalsBar />
+
+  <section class="section-py">
+    <div class="container-site grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-7">
+        <LeadCaptureForm heading="" id="estimate" />
+      </div>
+      <aside class="lg:col-span-5 contact-aside">
+        <div class="contact-block">
+          <h2 class="contact-block-label">Call</h2>
+          <a href={site.phoneHref} class="contact-block-primary">{site.phone}</a>
+          <p class="contact-block-sub">Reach us directly — no phone tree, no wait.</p>
+        </div>
+
+        <div class="contact-block">
+          <h2 class="contact-block-label">Email</h2>
+          <a href={site.emailHref} class="contact-block-primary break-all">{site.email}</a>
+          <p class="contact-block-sub">For non-urgent questions or to send us photos.</p>
+        </div>
+
+        <div class="contact-block">
+          <h2 class="contact-block-label">Visit</h2>
+          <p class="contact-block-primary-plain">
+            {site.address.street}<br />
+            {site.address.city}, {site.address.region} {site.address.postalCode}
+          </p>
+          <p class="contact-block-sub">Hours: {site.hours}</p>
+        </div>
+
+        <div class="contact-block">
+          <h2 class="contact-block-label">Serving</h2>
+          <p class="contact-block-plain">
+            Fairfield · Vacaville · Suisun City · Vallejo · Napa — and nearby Solano County communities.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .contact-block {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+  }
+  .contact-block-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin: 0 0 0.5rem;
+  }
+  .contact-block-primary {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.625rem;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+    display: inline-block;
+    line-height: 1.2;
+  }
+  .contact-block-primary:hover { color: var(--color-primary); }
+  .contact-block-primary-plain {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.4;
+  }
+  .contact-block-sub {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin: 0.5rem 0 0;
+    line-height: 1.5;
+  }
+  .contact-block-plain {
+    font-size: 1rem;
+    color: var(--color-text);
+    line-height: 1.55;
+    margin: 0;
+  }
+</style>

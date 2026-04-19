@@ -1,0 +1,16 @@
+---
+import { trustSignals } from '../data/site';
+---
+
+<section class="bg-accent text-text-inverse">
+  <div class="container-site py-6 md:py-7">
+    <ul class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 md:gap-x-10">
+      {trustSignals.map((signal) => (
+        <li class="flex items-center gap-2 text-sm md:text-[15px] font-medium">
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-primary" aria-hidden="true"></span>
+          {signal}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

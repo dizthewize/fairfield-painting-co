@@ -1,0 +1,36 @@
+---
+import ServiceCard from './ServiceCard.astro';
+import { services } from '../data/site';
+
+interface Props {
+  heading?: string;
+  eyebrow?: string;
+  intro?: string;
+}
+
+const {
+  heading = 'Five painting services, one trusted Fairfield crew.',
+  eyebrow = 'What we do',
+  intro = "Every project starts with a free color consultation and ends with a walk-through you actually sign off on.",
+} = Astro.props;
+---
+
+<section class="section-py">
+  <div class="container-site">
+    <div class="max-w-3xl mb-12 md:mb-16">
+      <span class="eyebrow mb-3 block">{eyebrow}</span>
+      <h2 class="font-display font-medium text-3xl md:text-5xl tracking-tight">
+        {heading}
+      </h2>
+      {intro && (
+        <p class="mt-5 text-lg text-text-muted max-w-2xl leading-relaxed">{intro}</p>
+      )}
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+      {services.map((s) => (
+        <ServiceCard name={s.name} slug={s.slug} short={s.short} />
+      ))}
+    </div>
+  </div>
+</section>

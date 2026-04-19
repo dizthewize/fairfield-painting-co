@@ -1,0 +1,29 @@
+---
+import { site, serviceAreas } from '../data/site';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'HousePainter',
+  name: site.name,
+  image: `${site.domain}/og-image.svg`,
+  url: site.domain,
+  telephone: site.phone,
+  email: site.email,
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
+    postalCode: site.address.postalCode,
+    addressCountry: site.address.country,
+  },
+  areaServed: serviceAreas.map((a) => `${a.city}, CA`),
+  openingHours: 'Mo-Fr 07:30-17:30',
+  sameAs: [site.social.instagram, site.social.facebook, site.social.google].filter(
+    (u) => u && u !== '#'
+  ),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />

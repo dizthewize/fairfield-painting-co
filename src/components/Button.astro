@@ -1,0 +1,59 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost' | 'secondary-inverse';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  ariaLabel?: string;
+  fullWidth?: boolean;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  class: className = '',
+  ariaLabel,
+  fullWidth = false,
+} = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 font-semibold tracking-[0.01em] rounded-md transition-all duration-150 ease-out select-none';
+
+const sizes = {
+  sm: 'text-sm px-4 h-9',
+  md: 'text-base px-5 h-11',
+  lg: 'text-lg px-7 h-[52px]',
+};
+
+const variants = {
+  primary:
+    'bg-primary text-white hover:bg-primary-dark hover:-translate-y-px hover:shadow-sm-warm',
+  secondary:
+    'bg-transparent text-accent border-2 border-accent hover:bg-accent hover:text-text-inverse',
+  'secondary-inverse':
+    'bg-transparent text-text-inverse border-2 border-text-inverse hover:bg-text-inverse hover:text-accent',
+  ghost:
+    'bg-transparent text-primary underline underline-offset-4 decoration-1 hover:decoration-2 px-0',
+};
+
+const classes = [
+  base,
+  sizes[size],
+  variants[variant],
+  fullWidth ? 'w-full' : '',
+  className,
+].filter(Boolean).join(' ');
+---
+
+{href ? (
+  <a href={href} class={classes} aria-label={ariaLabel}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={classes} aria-label={ariaLabel}>
+    <slot />
+  </button>
+)}

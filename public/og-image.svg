@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8F4F14"/>
+      <stop offset="60%" stop-color="#4A2F0F"/>
+      <stop offset="100%" stop-color="#1F1B17"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g transform="translate(80, 440)">
+    <text font-family="Fraunces, Georgia, serif" font-weight="500" font-size="72" fill="#FAF6EF" letter-spacing="-1">
+      Fairfield <tspan fill="#B8691E">Painting</tspan> Co.
+    </text>
+    <text y="60" font-family="Manrope, sans-serif" font-size="26" fill="#FAF6EF" opacity="0.85">
+      Warm color. Clean worksites. Real warranties.
+    </text>
+    <text y="100" font-family="Manrope, sans-serif" font-size="20" fill="#B8691E" letter-spacing="2" text-transform="uppercase">
+      LICENSED &amp; INSURED · FAIRFIELD, CA
+    </text>
+  </g>
+</svg>

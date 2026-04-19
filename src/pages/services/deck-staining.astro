@@ -1,0 +1,13 @@
+---
+import ServicePage from '../../components/ServicePage.astro';
+import { services } from '../../data/site';
+const service = services.find((s) => s.slug === 'deck-staining')!;
+---
+
+<ServicePage
+  service={service}
+  title="Deck Staining & Sealing in Fairfield, CA"
+  description="Protect and beautify your deck with expert staining and sealing in Fairfield, CA. Licensed & insured. Free estimate."
+  benefitStatement="Protect the wood, deepen the color, extend the life."
+  longIntro="A properly stained and sealed deck is easier to clean, safer to walk on, and holds color 3–5x longer than a quick DIY finish. It also looks noticeably better up close."
+/>

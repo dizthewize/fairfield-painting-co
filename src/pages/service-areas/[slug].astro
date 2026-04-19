@@ -1,0 +1,139 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import ServicesGrid from '../../components/ServicesGrid.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import Button from '../../components/Button.astro';
+import { serviceAreas, site } from '../../data/site';
+
+export function getStaticPaths() {
+  return serviceAreas.map((a) => ({
+    params: { slug: a.slug },
+    props: { area: a },
+  }));
+}
+
+const { area } = Astro.props;
+const otherAreas = serviceAreas.filter((a) => a.slug !== area.slug);
+---
+
+<Layout
+  title={`${area.city}, CA Painter · Fairfield Painting Co.`}
+  description={`Painting services in ${area.city}, CA. Licensed & insured. Interior, exterior, cabinets, decks, drywall repair. Free color consultation.`}
+  path={`/service-areas/${area.slug}`}
+>
+  <Hero
+    eyebrow={`Serving ${area.city}, CA`}
+    headline={`${area.city} painters who treat your home like their own.`}
+    subheadline={`Licensed & insured painting services across ${area.city}. Interior and exterior, cabinets, decks, and drywall repair — all from one local crew.`}
+    compact
+    primaryCta={{ label: `Get a Free ${area.city} Estimate`, href: '/contact#estimate' }}
+    secondaryCta={{ label: `Call ${site.phone}`, href: site.phoneHref }}
+  />
+
+  <TrustSignalsBar />
+
+  <section class="section-py">
+    <div class="container-site grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-7 prose-body">
+        <span class="eyebrow mb-3 block">Local to {area.city}</span>
+        <h2 class="font-display font-medium text-3xl md:text-4xl tracking-tight mb-6">
+          Painting in {area.city} — what we know.
+        </h2>
+        <p>{area.blurb}</p>
+        <p>
+          When you book an estimate, we come to you — we walk the property, listen to what you
+          want, and send a fixed-price written quote within one business day. If the job runs into
+          unexpected prep work, that's on us to plan for, not on you to pay extra for.
+        </p>
+        <p>
+          Every {area.city} project is backed by our workmanship warranty (2 years on interior, 3
+          years on exterior) and our clean-worksite promise.
+        </p>
+      </div>
+
+      <aside class="lg:col-span-5">
+        <div class="area-cta-card">
+          <h3 class="font-display font-medium text-2xl mb-3">Book a walk-through</h3>
+          <p class="text-text-muted text-sm mb-5 leading-relaxed">
+            Free {area.city} estimate. We respond within one business day.
+          </p>
+          <Button href="/contact#estimate" size="lg" fullWidth>Get a Free Estimate</Button>
+          <a href={site.phoneHref} class="area-cta-phone">Or call {site.phone}</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <ServicesGrid
+    heading={`Painting services available in ${area.city}.`}
+    eyebrow="Services"
+    intro="Every service below is available across our full service area — same crew, same standards, same warranties."
+  />
+
+  <section class="bg-surface section-py">
+    <div class="container-site">
+      <span class="eyebrow mb-3 block">Also serving</span>
+      <h2 class="font-display font-medium text-3xl md:text-4xl tracking-tight mb-8">
+        Nearby cities we paint in.
+      </h2>
+      <ul class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {otherAreas.map((a) => (
+          <li>
+            <a href={`/service-areas/${a.slug}`} class="nearby-chip">
+              {a.city}, CA <span aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <FAQAccordion />
+
+  <FinalCTA headline={`Ready to paint your ${area.city} home?`} />
+</Layout>
+
+<style>
+  .area-cta-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    position: sticky;
+    top: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .area-cta-phone {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding: 0.5rem;
+  }
+  .area-cta-phone:hover { color: var(--color-primary); }
+
+  .nearby-chip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.875rem 1.125rem;
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-text);
+    transition: all 150ms ease;
+  }
+  .nearby-chip:hover {
+    background: var(--color-accent);
+    color: var(--color-text-inverse);
+  }
+  .nearby-chip span { color: var(--color-primary); }
+  .nearby-chip:hover span { color: var(--color-text-inverse); }
+</style>

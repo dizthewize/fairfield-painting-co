@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fairfield Painting Co. — Design Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #B8691E;
+      --color-primary-dark: #8F4F14;
+      --color-accent: #1F1B17;
+      --color-bg: #FAF6EF;
+      --color-surface: #F1EADF;
+      --color-surface-dark: #1F1B17;
+      --color-text: #1F1B17;
+      --color-text-muted: #6B5E4F;
+      --color-text-inverse: #FAF6EF;
+      --color-border: #DFD3BF;
+      --color-border-strong: #1F1B17;
+      --color-success: #3B7A3B;
+      --color-warning: #B8691E;
+      --color-error: #B8361E;
+
+      --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+      --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      --text-xs: 0.75rem;
+      --text-sm: 0.875rem;
+      --text-base: 1rem;
+      --text-lg: 1.125rem;
+      --text-xl: 1.25rem;
+      --text-2xl: 1.5rem;
+      --text-3xl: 1.875rem;
+      --text-4xl: 2.25rem;
+      --text-5xl: 3rem;
+      --text-6xl: 4rem;
+      --text-7xl: 5rem;
+
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 10px;
+      --radius-xl: 16px;
+
+      --shadow-sm: 0 1px 2px rgba(31, 27, 23, 0.06);
+      --shadow-md: 0 4px 14px rgba(31, 27, 23, 0.08);
+      --shadow-lg: 0 16px 40px rgba(31, 27, 23, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      padding: 3rem 2rem;
+    }
+    .proof-container { max-width: 1240px; margin: 0 auto; }
+    h1.proof-title {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: var(--text-5xl);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin: 0 0 0.5rem;
+    }
+    .proof-subtitle { color: var(--color-text-muted); margin: 0 0 4rem; font-size: var(--text-lg); }
+    .proof-section { margin: 0 0 5rem; }
+    .proof-section h2 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: var(--text-2xl);
+      letter-spacing: -0.01em;
+      margin: 0 0 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    /* 1. Color Palette */
+    .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem; }
+    .swatch {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .swatch-chip {
+      width: 100%; aspect-ratio: 1 / 1; border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+    .swatch-name { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); }
+    .swatch-hex { font-size: var(--text-xs); color: var(--color-text-muted); font-family: ui-monospace, monospace; }
+
+    /* 2. Typography */
+    .type-row { margin-bottom: 1.25rem; }
+    .type-row .meta { font-size: var(--text-xs); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .type-row .specimen { line-height: 1.1; }
+    .display-6xl { font-family: var(--font-display); font-weight: 500; font-size: var(--text-6xl); letter-spacing: -0.02em; }
+    .display-4xl { font-family: var(--font-display); font-weight: 500; font-size: var(--text-4xl); letter-spacing: -0.01em; }
+    .display-2xl { font-family: var(--font-display); font-weight: 500; font-size: var(--text-2xl); }
+    .body-xl { font-family: var(--font-body); font-weight: 400; font-size: var(--text-xl); }
+    .body-base { font-family: var(--font-body); font-weight: 400; font-size: var(--text-base); }
+    .body-sm { font-family: var(--font-body); font-weight: 400; font-size: var(--text-sm); color: var(--color-text-muted); }
+
+    /* 3. Buttons */
+    .btn-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; max-width: 720px; }
+    .btn-cell { display: flex; align-items: center; justify-content: flex-start; }
+    .btn {
+      font-family: var(--font-body); font-weight: 600;
+      letter-spacing: 0.01em; border-radius: var(--radius-md);
+      transition: all 120ms ease; cursor: pointer; border: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .btn-primary { background: var(--color-primary); color: #fff; }
+    .btn-primary:hover { background: var(--color-primary-dark); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+    .btn-secondary { background: transparent; color: var(--color-accent); border: 2px solid var(--color-accent); }
+    .btn-secondary:hover { background: var(--color-accent); color: var(--color-text-inverse); }
+    .btn-ghost { background: transparent; color: var(--color-primary); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; padding: 0; }
+    .btn-ghost:hover { text-decoration-thickness: 2px; }
+    .btn-sm { font-size: var(--text-sm); padding: 10px 16px; height: 36px; }
+    .btn-md { font-size: var(--text-base); padding: 12px 22px; height: 44px; }
+    .btn-lg { font-size: var(--text-lg); padding: 16px 28px; height: 52px; }
+
+    /* 4. Hero Mock */
+    .hero-mock {
+      position: relative; overflow: hidden;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(120deg, rgba(31,27,23,0.70) 0%, rgba(31,27,23,0.30) 55%, rgba(31,27,23,0.10) 100%),
+        linear-gradient(135deg, #B8691E 0%, #6B4520 60%, #1F1B17 100%);
+      padding: 5rem 3rem;
+      color: var(--color-text-inverse);
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--color-primary);
+      background: rgba(250, 246, 239, 0.1); backdrop-filter: blur(8px);
+      padding: 6px 12px; border-radius: var(--radius-full); display: inline-block;
+      margin-bottom: 1.25rem;
+    }
+    .hero-headline {
+      font-family: var(--font-display); font-weight: 500;
+      font-size: var(--text-6xl); line-height: 1.05; letter-spacing: -0.02em;
+      margin: 0 0 1.25rem;
+    }
+    .hero-sub { font-family: var(--font-body); font-size: var(--text-xl); font-weight: 400; opacity: 0.9; margin: 0 0 2rem; max-width: 52ch; }
+    .hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-form-card {
+      background: var(--color-bg); color: var(--color-text);
+      border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-lg);
+    }
+    .hero-form-card h3 { font-family: var(--font-display); font-weight: 500; font-size: var(--text-xl); margin: 0 0 1rem; }
+
+    /* 5. Services Card */
+    .services-card {
+      background: var(--color-bg); max-width: 380px; padding: 0; overflow: hidden; border-radius: var(--radius-lg);
+      transition: transform 200ms ease; cursor: pointer;
+    }
+    .services-card:hover { transform: translateY(-2px); }
+    .services-card-image {
+      width: 100%; aspect-ratio: 4 / 3;
+      background:
+        linear-gradient(135deg, rgba(31,27,23,0.1), rgba(184,105,30,0.15)),
+        radial-gradient(at 30% 40%, #C88F4F 0%, #6B4520 60%, #1F1B17 100%);
+      border-radius: var(--radius-md);
+    }
+    .services-card-body { padding: 1.25rem 0 0.5rem; }
+    .services-card-title { font-family: var(--font-display); font-weight: 500; font-size: var(--text-3xl); letter-spacing: -0.01em; margin: 0; color: var(--color-text); }
+    .services-card-benefit { font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text-muted); margin: 8px 0 16px; line-height: 1.6; }
+    .services-card-link { color: var(--color-primary); font-weight: 600; font-size: var(--text-sm); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+    .services-card-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    /* 6. Form */
+    .form-card {
+      background: var(--color-surface); border-radius: var(--radius-lg);
+      padding: 1.5rem; max-width: 420px; box-shadow: var(--shadow-md);
+    }
+    .form-card h3 { font-family: var(--font-display); font-weight: 500; font-size: var(--text-2xl); margin: 0 0 1.25rem; }
+    .form-row { display: flex; flex-direction: column; margin-bottom: 1rem; }
+    .form-label { font-size: var(--text-sm); font-weight: 500; color: var(--color-text-muted); margin-bottom: 6px; }
+    .form-input, .form-select, .form-textarea {
+      font-family: var(--font-body); font-size: var(--text-base);
+      padding: 12px 14px; border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); background: #fff; color: var(--color-text);
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(184,105,30,0.3); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .form-submit { width: 100%; margin-top: 0.5rem; }
+    .form-trust { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 12px; text-align: center; }
+
+    /* 7. Mobile Sticky Bar */
+    .sticky-bar {
+      background: var(--color-accent); color: var(--color-text-inverse);
+      display: flex; gap: 8px; padding: 12px;
+      border-top: 1px solid var(--color-primary);
+      border-radius: var(--radius-md);
+      max-width: 420px;
+    }
+    .sticky-bar-btn {
+      flex: 1; height: 44px;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      border-radius: var(--radius-sm); font-weight: 600; font-size: var(--text-sm);
+      text-decoration: none;
+    }
+    .sticky-bar-call { background: transparent; color: var(--color-text-inverse); border: 1px solid rgba(255,255,255,0.3); }
+    .sticky-bar-quote { background: var(--color-primary); color: #fff; }
+
+    /* Trust bar + Palette Strip */
+    .trust-bar { background: var(--color-accent); color: var(--color-text-inverse); padding: 1.25rem; border-radius: var(--radius-lg); display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: center; }
+    .trust-badge { display: inline-flex; align-items: center; gap: 8px; font-size: var(--text-sm); font-weight: 500; }
+    .trust-badge-dot { width: 8px; height: 8px; background: var(--color-primary); border-radius: 50%; }
+    .palette-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border); }
+    .palette-chip { height: 100px; display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; color: #fff; font-family: var(--font-display); font-weight: 500; font-size: var(--text-sm); text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+
+    /* Testimonial card */
+    .testimonial-card {
+      background: var(--color-bg); border-radius: var(--radius-lg);
+      padding: 1.75rem; max-width: 380px; box-shadow: var(--shadow-sm);
+    }
+    .testimonial-stars { color: var(--color-primary); font-size: var(--text-base); margin-bottom: 14px; letter-spacing: 2px; }
+    .testimonial-quote { font-family: var(--font-display); font-weight: 400; font-style: italic; font-size: var(--text-xl); color: var(--color-text); margin: 0; line-height: 1.4; }
+    .testimonial-divider { width: 40px; height: 3px; background: var(--color-primary); margin: 20px 0; border-radius: 2px; }
+    .testimonial-attrib { font-size: var(--text-sm); color: var(--color-text-muted); }
+    .testimonial-attrib strong { color: var(--color-text); font-weight: 600; }
+
+    /* FAQ */
+    .faq-list { max-width: 720px; }
+    .faq-item { border-bottom: 1px solid var(--color-border); padding: 18px 0; }
+    .faq-question { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-display); font-weight: 500; font-size: var(--text-xl); color: var(--color-text); }
+    .faq-chevron { color: var(--color-primary); font-size: var(--text-lg); }
+    .faq-answer { font-size: var(--text-base); line-height: 1.7; color: var(--color-text-muted); padding-top: 12px; }
+
+    @media (max-width: 768px) {
+      body { padding: 2rem 1.25rem; }
+      .hero-mock { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+      .hero-headline { font-size: var(--text-5xl); }
+      .btn-grid { grid-template-columns: 1fr; }
+      .palette-strip { grid-template-columns: 1fr; }
+      .palette-chip { height: 60px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="proof-container">
+    <h1 class="proof-title">Fairfield Painting Co.</h1>
+    <p class="proof-subtitle">Design Proof · Editorial Craftsmanship · Warm Charcoal + Amber</p>
+
+    <!-- 1. Color Palette -->
+    <section class="proof-section">
+      <h2>Color Palette</h2>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch-chip" style="background:#B8691E"></div><div class="swatch-name">--color-primary</div><div class="swatch-hex">#B8691E</div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#8F4F14"></div><div class="swatch-name">--color-primary-dark</div><div class="swatch-hex">#8F4F14</div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#1F1B17"></div><div class="swatch-name">--color-accent</div><div class="swatch-hex">#1F1B17</div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#FAF6EF"></div><div class="swatch-name">--color-bg</div><div class="swatch-hex">#FAF6EF</div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#F1EADF"></div><div class="swatch-name">--color-surface</div><div class="swatch-hex">#F1EADF</div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#1F1B17"></div><div class="swatch-name">--color-surface-dark</div><div class="swatch-hex">#1F1B17</div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#1F1B17"></div><div class="swatch-name">--color-text</div><div class="swatch-hex">#1F1B17</div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#6B5E4F"></div><div class="swatch-name">--color-text-muted</div><div class="swatch-hex">#6B5E4F</div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#DFD3BF"></div><div class="swatch-name">--color-border</div><div class="swatch-hex">#DFD3BF</div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#3B7A3B"></div><div class="swatch-name">--color-success</div><div class="swatch-hex">#3B7A3B</div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#B8691E"></div><div class="swatch-name">--color-warning</div><div class="swatch-hex">#B8691E</div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#B8361E"></div><div class="swatch-name">--color-error</div><div class="swatch-hex">#B8361E</div></div>
+      </div>
+    </section>
+
+    <!-- 2. Typography -->
+    <section class="proof-section">
+      <h2>Typography</h2>
+      <div class="type-row"><div class="meta">Fraunces · Display · 64px · weight 500</div><div class="specimen display-6xl">The quick brown fox</div></div>
+      <div class="type-row"><div class="meta">Fraunces · Display · 36px · weight 500</div><div class="specimen display-4xl">The quick brown fox jumps over the lazy dog</div></div>
+      <div class="type-row"><div class="meta">Fraunces · Display · 24px · weight 500</div><div class="specimen display-2xl">The quick brown fox jumps over the lazy dog</div></div>
+      <div class="type-row"><div class="meta">Manrope · Body · 20px · weight 400</div><div class="specimen body-xl">The quick brown fox jumps over the lazy dog</div></div>
+      <div class="type-row"><div class="meta">Manrope · Body · 16px · weight 400</div><div class="specimen body-base">The quick brown fox jumps over the lazy dog — this is default body copy on our site, reading at a comfortable 1.5 line height.</div></div>
+      <div class="type-row"><div class="meta">Manrope · Body · 14px · weight 400 · muted</div><div class="specimen body-sm">Supporting text, form labels, meta information.</div></div>
+    </section>
+
+    <!-- 3. Buttons -->
+    <section class="proof-section">
+      <h2>Buttons</h2>
+      <div class="btn-grid">
+        <div class="btn-cell"><button class="btn btn-primary btn-sm">Primary · SM</button></div>
+        <div class="btn-cell"><button class="btn btn-secondary btn-sm">Secondary · SM</button></div>
+        <div class="btn-cell"><button class="btn btn-ghost btn-sm">Ghost · SM</button></div>
+        <div class="btn-cell"><button class="btn btn-primary btn-md">Primary · MD</button></div>
+        <div class="btn-cell"><button class="btn btn-secondary btn-md">Secondary · MD</button></div>
+        <div class="btn-cell"><button class="btn btn-ghost btn-md">Ghost · MD</button></div>
+        <div class="btn-cell"><button class="btn btn-primary btn-lg">Primary · LG</button></div>
+        <div class="btn-cell"><button class="btn btn-secondary btn-lg">Secondary · LG</button></div>
+        <div class="btn-cell"><button class="btn btn-ghost btn-lg">Ghost · LG</button></div>
+      </div>
+    </section>
+
+    <!-- 4. Hero -->
+    <section class="proof-section">
+      <h2>Hero Mock</h2>
+      <div class="hero-mock">
+        <div>
+          <span class="hero-eyebrow">Fairfield · Solano County</span>
+          <h1 class="hero-headline">Fairfield, CA Painters Who Treat Your Home Like Their Own</h1>
+          <p class="hero-sub">Licensed &amp; insured interior and exterior painting with a clean-worksite guarantee and free color consultation.</p>
+          <div class="hero-cta-row">
+            <button class="btn btn-primary btn-lg">Get a Free Estimate</button>
+            <button class="btn btn-secondary btn-lg" style="color:#FAF6EF; border-color:#FAF6EF;">See Recent Projects</button>
+          </div>
+        </div>
+        <div class="hero-form-card">
+          <h3>Request Your Free Estimate</h3>
+          <div class="form-row"><label class="form-label">Name</label><input class="form-input" type="text" placeholder="Jane Homeowner"></div>
+          <div class="form-row"><label class="form-label">Phone</label><input class="form-input" type="tel" placeholder="(707) 555-0137"></div>
+          <div class="form-row"><label class="form-label">Service</label>
+            <select class="form-select"><option>Interior Painting</option><option>Exterior Painting</option><option>Cabinet Refinishing</option><option>Deck Staining</option><option>Drywall Repair</option></select>
+          </div>
+          <button class="btn btn-primary btn-lg form-submit">Request My Estimate</button>
+          <div class="form-trust">Licensed &amp; Insured · No obligation · Reply within 1 business day</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Services Card -->
+    <section class="proof-section">
+      <h2>Services Grid Card</h2>
+      <div class="services-card">
+        <div class="services-card-image"></div>
+        <div class="services-card-body">
+          <h3 class="services-card-title">Interior Painting</h3>
+          <p class="services-card-benefit">Premium paint, clean crews, and a color-match guarantee on every wall.</p>
+          <a href="#" class="services-card-link">Learn more →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Lead Capture Form (standalone) -->
+    <section class="proof-section">
+      <h2>Lead Capture Form</h2>
+      <div class="form-card">
+        <h3>Request Your Free Estimate</h3>
+        <div class="form-row"><label class="form-label" for="n1">Name</label><input id="n1" class="form-input" type="text" placeholder="Jane Homeowner"></div>
+        <div class="form-row"><label class="form-label" for="p1">Phone</label><input id="p1" class="form-input" type="tel" placeholder="(707) 555-0137"></div>
+        <div class="form-row"><label class="form-label" for="e1">Email</label><input id="e1" class="form-input" type="email" placeholder="jane@example.com"></div>
+        <div class="form-row"><label class="form-label" for="s1">Service Type</label>
+          <select id="s1" class="form-select">
+            <option>Interior Painting</option>
+            <option>Exterior Painting</option>
+            <option>Cabinet Refinishing</option>
+            <option>Deck Staining</option>
+            <option>Drywall Repair</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-row"><label class="form-label" for="d1">Describe your project (optional)</label><textarea id="d1" class="form-textarea" placeholder="Tell us about your project…"></textarea></div>
+        <button class="btn btn-primary btn-lg form-submit">Request My Free Estimate</button>
+        <div class="form-trust">Licensed &amp; Insured · No obligation · We respond within one business day.</div>
+      </div>
+    </section>
+
+    <!-- Trust Signals + Palette Strip -->
+    <section class="proof-section">
+      <h2>Trust Signals Bar</h2>
+      <div class="trust-bar">
+        <span class="trust-badge"><span class="trust-badge-dot"></span>Licensed &amp; Insured</span>
+        <span class="trust-badge"><span class="trust-badge-dot"></span>Family-Owned</span>
+        <span class="trust-badge"><span class="trust-badge-dot"></span>Color-Match Guarantee</span>
+        <span class="trust-badge"><span class="trust-badge-dot"></span>Clean Worksite Promise</span>
+        <span class="trust-badge"><span class="trust-badge-dot"></span>2-Year Warranty</span>
+      </div>
+    </section>
+
+    <section class="proof-section">
+      <h2>Palette Strip (Signature Component)</h2>
+      <div class="palette-strip">
+        <div class="palette-chip" style="background:#E8DFD0">Revere Pewter</div>
+        <div class="palette-chip" style="background:#C9BBA0">Edgecomb Gray</div>
+        <div class="palette-chip" style="background:#7C8873; color:#fff">Dried Thyme</div>
+        <div class="palette-chip" style="background:#2C3E50; color:#fff">Hale Navy</div>
+        <div class="palette-chip" style="background:#1F1B17; color:#fff">Cracked Pepper</div>
+      </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="proof-section">
+      <h2>Testimonial Card</h2>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"They masked, taped, and tarped every surface — I could barely tell a painting crew had been in the house. The color match on the trim was perfect."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-attrib"><strong>Sarah K.</strong> · Fairfield · Interior Painting</div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="proof-section">
+      <h2>FAQ Accordion</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">How much does it cost to paint a house in Fairfield, CA?<span class="faq-chevron">+</span></div>
+          <div class="faq-answer">Pricing varies by square footage, prep work, and paint grade. Most interior rooms run $400–$900, and full home exteriors typically range $4,500–$9,500. We send a fixed-price written estimate within one business day of your walk-through — no surprises.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Do you provide the paint, or do I?<span class="faq-chevron">+</span></div>
+          <div class="faq-answer">We do. We work primarily with Sherwin-Williams and Benjamin Moore premium lines, and your estimate includes all paint, primer, and materials.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Are you licensed and insured?<span class="faq-chevron">+</span></div>
+          <div class="faq-answer">Yes. We're fully licensed in California and carry general liability plus workers' comp. We're happy to send certificates before the job.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Mobile Sticky Bar -->
+    <section class="proof-section">
+      <h2>Mobile Sticky Bar</h2>
+      <div class="sticky-bar">
+        <a href="tel:5550000000" class="sticky-bar-btn sticky-bar-call">📞 Call</a>
+        <a href="#" class="sticky-bar-btn sticky-bar-quote">Free Estimate</a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

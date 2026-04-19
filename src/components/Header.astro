@@ -1,0 +1,234 @@
+---
+import { site, services, serviceAreas } from '../data/site';
+import Button from './Button.astro';
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/' || pathname === '';
+---
+
+<header
+  id="site-header"
+  class:list={[
+    'sticky top-0 z-50 w-full transition-all duration-200 ease-out',
+    isHome ? 'is-home' : 'is-inner',
+  ]}
+>
+  <div class="header-inner">
+    <div class="container-site flex items-center justify-between h-20 md:h-[80px]">
+      <a href="/" class="brand font-display font-semibold text-xl md:text-[22px] tracking-tight" aria-label={`${site.name} — home`}>
+        Fairfield <span class="text-primary">Painting</span> Co.
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
+        <div class="nav-dropdown group relative">
+          <a href="/services" class="nav-link" aria-haspopup="true">Services</a>
+          <div class="nav-panel" role="menu">
+            {services.map((s) => (
+              <a href={`/services/${s.slug}`} class="nav-panel-link" role="menuitem">
+                {s.name}
+              </a>
+            ))}
+          </div>
+        </div>
+        <a href="/gallery" class="nav-link">Gallery</a>
+        <div class="nav-dropdown group relative">
+          <a href="/service-areas" class="nav-link" aria-haspopup="true">Service Areas</a>
+          <div class="nav-panel" role="menu">
+            {serviceAreas.map((a) => (
+              <a href={`/service-areas/${a.slug}`} class="nav-panel-link" role="menuitem">
+                {a.city}
+              </a>
+            ))}
+          </div>
+        </div>
+        <a href="/about" class="nav-link">About</a>
+        <a href="/contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a
+          href={site.phoneHref}
+          class="hidden md:inline text-sm font-semibold tracking-tight header-phone"
+        >
+          {site.phone}
+        </a>
+        <Button href="/contact#estimate" size="sm" class="hidden md:inline-flex">
+          Get a Free Estimate
+        </Button>
+        <button
+          type="button"
+          class="menu-toggle lg:hidden"
+          aria-label="Open menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          data-mobile-menu-toggle
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="mobile-menu" data-mobile-menu hidden>
+    <div class="mobile-menu-inner">
+      <div class="flex items-center justify-between mb-8">
+        <span class="font-display font-semibold text-xl text-text-inverse">Menu</span>
+        <button type="button" class="text-text-inverse" aria-label="Close menu" data-mobile-menu-close>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-6" aria-label="Mobile">
+        <a href="/services" class="mobile-link">Services</a>
+        <a href="/gallery" class="mobile-link">Gallery</a>
+        <a href="/service-areas" class="mobile-link">Service Areas</a>
+        <a href="/about" class="mobile-link">About</a>
+        <a href="/contact" class="mobile-link">Contact</a>
+        <div class="mt-6 flex flex-col gap-4">
+          <Button href="/contact#estimate" size="lg" fullWidth>Get a Free Estimate</Button>
+          <a href={site.phoneHref} class="text-center text-text-inverse/90 font-semibold">
+            Or call {site.phone}
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  #site-header {
+    background: transparent;
+  }
+  #site-header.is-inner,
+  #site-header.is-scrolled {
+    background: rgba(250, 246, 239, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  #site-header.is-home:not(.is-scrolled) .brand {
+    color: var(--color-text-inverse);
+  }
+  #site-header.is-home:not(.is-scrolled) .header-phone,
+  #site-header.is-home:not(.is-scrolled) .nav-link,
+  #site-header.is-home:not(.is-scrolled) .menu-toggle {
+    color: var(--color-text-inverse);
+  }
+  .brand { color: var(--color-accent); }
+  .nav-link {
+    position: relative;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--color-text);
+    transition: color 150ms;
+    border-radius: var(--radius-sm);
+  }
+  .nav-link:hover { color: var(--color-primary); }
+  .menu-toggle {
+    color: var(--color-text);
+    background: none;
+    border: 0;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  .header-phone {
+    color: var(--color-text);
+    transition: color 150ms;
+  }
+  .header-phone:hover { color: var(--color-primary); }
+
+  .nav-dropdown .nav-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    padding: 0.5rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 16px 40px rgba(31, 27, 23, 0.12);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(4px);
+    transition: all 150ms ease-out;
+  }
+  .nav-dropdown:hover .nav-panel,
+  .nav-dropdown:focus-within .nav-panel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .nav-panel-link {
+    display: block;
+    padding: 0.625rem 0.875rem;
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .nav-panel-link:hover {
+    background: var(--color-surface);
+    color: var(--color-primary);
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: var(--color-surface-dark);
+    z-index: 60;
+    overflow-y: auto;
+  }
+  .mobile-menu[hidden] { display: none; }
+  .mobile-menu-inner {
+    padding: 1.25rem 1.5rem 3rem;
+    min-height: 100%;
+  }
+  .mobile-link {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.875rem;
+    color: var(--color-text-inverse);
+  }
+  .mobile-link:hover { color: var(--color-primary); }
+</style>
+
+<script is:inline>
+  (function () {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+    const onScroll = () => {
+      if (window.scrollY > 40) header.classList.add('is-scrolled');
+      else header.classList.remove('is-scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    const toggleBtn = document.querySelector('[data-mobile-menu-toggle]');
+    const closeBtn = document.querySelector('[data-mobile-menu-close]');
+    const menu = document.querySelector('[data-mobile-menu]');
+    const openMenu = () => {
+      if (!menu || !toggleBtn) return;
+      menu.hidden = false;
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    };
+    const closeMenu = () => {
+      if (!menu || !toggleBtn) return;
+      menu.hidden = true;
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+    toggleBtn?.addEventListener('click', openMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+    menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu && !menu.hidden) closeMenu();
+    });
+  })();
+</script>

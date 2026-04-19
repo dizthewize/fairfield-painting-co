@@ -1,0 +1,141 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import TrustSignalsBar from '../components/TrustSignalsBar.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import PaletteStrip from '../components/PaletteStrip.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { serviceAreas, site } from '../data/site';
+---
+
+<Layout
+  title="Fairfield Painters · Licensed House Painting Co."
+  description="Licensed & insured painters serving Fairfield, CA. Free color consultation, clean worksite guarantee, interior & exterior painting. Get a free estimate today."
+  path="/"
+  includeBusinessSchema
+>
+  <Hero
+    headline="Fairfield, CA painters who treat your home like their own."
+    subheadline="Licensed & insured interior and exterior painting with a clean-worksite guarantee and a free color consultation on every estimate."
+    showForm={true}
+    secondaryCta={{ label: 'See Recent Projects', href: '/gallery' }}
+  />
+
+  <TrustSignalsBar />
+
+  <PaletteStrip />
+
+  <ServicesGrid />
+
+  <!-- Why us band -->
+  <section class="bg-surface section-py">
+    <div class="container-site grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <span class="eyebrow mb-3 block">Why homeowners hire us</span>
+        <h2 class="font-display font-medium text-3xl md:text-5xl tracking-tight">
+          Most complaints about painters are fixable. We built our process around fixing them.
+        </h2>
+      </div>
+      <div class="lg:col-span-7 grid sm:grid-cols-2 gap-6 md:gap-8">
+        <div class="why-card">
+          <h3 class="why-card-title">One crew, start to finish.</h3>
+          <p class="why-card-body">The same people who quote your job do the work. No handoffs, no miscommunication.</p>
+        </div>
+        <div class="why-card">
+          <h3 class="why-card-title">Fixed-price estimates.</h3>
+          <p class="why-card-body">The number on the quote is the number on the invoice. No surprise change orders.</p>
+        </div>
+        <div class="why-card">
+          <h3 class="why-card-title">Clean worksite, every evening.</h3>
+          <p class="why-card-body">Drop cloths stay, dust stays contained, and we tidy up at the end of every day.</p>
+        </div>
+        <div class="why-card">
+          <h3 class="why-card-title">Real warranties, honored.</h3>
+          <p class="why-card-body">2-year interior, 3-year exterior workmanship warranty. If something isn't right, we come back.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <TestimonialsSection />
+
+  <!-- Service areas strip -->
+  <section class="section-py">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <span class="eyebrow mb-3 block">Where we paint</span>
+        <h2 class="font-display font-medium text-3xl md:text-5xl tracking-tight">
+          Proudly serving Solano County.
+        </h2>
+        <p class="mt-5 text-lg text-text-muted max-w-2xl leading-relaxed">
+          We're based in Fairfield and work across the surrounding communities. Not sure if we cover your neighborhood? Give us a call.
+        </p>
+      </div>
+      <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+        {serviceAreas.map((a) => (
+          <li>
+            <a href={`/service-areas/${a.slug}`} class="area-chip">
+              <span class="area-chip-city">{a.city}</span>
+              <span class="area-chip-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <FAQAccordion />
+
+  <FinalCTA />
+</Layout>
+
+<style>
+  .why-card {
+    border-top: 1px solid var(--color-border-strong);
+    padding-top: 1.5rem;
+  }
+  .why-card-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.375rem;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+    margin: 0 0 0.5rem;
+  }
+  .why-card-body {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+  .area-chip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.125rem;
+    color: var(--color-text);
+    transition: all 150ms ease;
+  }
+  .area-chip:hover {
+    background: var(--color-accent);
+    color: var(--color-text-inverse);
+    transform: translateY(-2px);
+  }
+  .area-chip-arrow {
+    color: var(--color-primary);
+    font-weight: 400;
+    transition: transform 150ms;
+  }
+  .area-chip:hover .area-chip-arrow {
+    color: var(--color-text-inverse);
+    transform: translateX(3px);
+  }
+</style>
