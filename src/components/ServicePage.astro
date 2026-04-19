@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from './Hero.astro';
+import Button from './Button.astro';
+import FinalCTA from './FinalCTA.astro';
+import TrustSignalsBar from './TrustSignalsBar.astro';
+import FAQAccordion from './FAQAccordion.astro';
+import { services, site, type Service } from '../data/site';
+
+interface Props {
+  service: Service;
+  title: string;
+  description: string;
+  benefitStatement: string;
+  longIntro?: string;
+}
+
+const { service, title, description, benefitStatement, longIntro } = Astro.props;
+const others = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: service.name,
+  provider: { '@type': 'HousePainter', name: site.name, telephone: site.phone, url: site.domain },
+  areaServed: ['Fairfield, CA', 'Vacaville, CA', 'Suisun City, CA', 'Vallejo, CA', 'Napa, CA'],
+  description: service.description,
+};
+---
+
+<Layout title={title} description={description} path={`/services/${service.slug}`}>
+  <Hero
+    eyebrow={`Service · ${service.name}`}
+    headline={`${service.name} in Fairfield, CA.`}
+    subheadline={benefitStatement}
+    compact
+  />
+
+  <TrustSignalsBar />
+
+  <section class="section-py">
+    <div class="container-site grid lg:grid-cols-12 gap-12 items-start">
+      <div class="lg:col-span-7 prose-body">
+        <span class="eyebrow mb-3 block">What you get</span>
+        <h2 class="font-display font-medium text-3xl md:text-4xl tracking-tight mb-6">
+          How we do {service.name.toLowerCase()}.
+        </h2>
+        {longIntro && <p>{longIntro}</p>}
+        <p>{service.description}</p>
+        <ul class="service-benefits">
+          {service.benefits.map((b) => (
+            <li>{b}</li>
+          ))}
+        </ul>
+      </div>
+      <aside class="lg:col-span-5 service-aside">
+        <div class="service-aside-card">
+          <h3 class="font-display font-medium text-2xl mb-2">Request a free estimate</h3>
+          <p class="text-text-muted mb-5 text-sm leading-relaxed">
+            Book a walk-through and we'll send a fixed-price quote within one business day.
+          </p>
+          <div class="flex flex-col gap-3">
+            <Button href={`/contact#estimate`} size="lg" fullWidth>{service.cta}</Button>
+            <a href={site.phoneHref} class="service-aside-phone">
+              Or call {site.phone}
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="bg-surface section-py">
+    <div class="container-site">
+      <div class="max-w-2xl mb-10">
+        <span class="eyebrow mb-3 block">Other services</span>
+        <h2 class="font-display font-medium text-3xl md:text-4xl tracking-tight">
+          Other ways we can help.
+        </h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {others.map((o) => (
+          <a href={`/services/${o.slug}`} class="related-service">
+            <div class="related-service-image service-image-placeholder" aria-hidden="true"></div>
+            <div>
+              <h3 class="related-service-title">{o.name}</h3>
+              <p class="related-service-short">{o.short}</p>
+              <span class="related-service-link">Learn more →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQAccordion />
+
+  <FinalCTA
+    headline={`Ready for your ${service.name.toLowerCase()} project?`}
+    preselectService={service.slug}
+  />
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
+</Layout>
+
+<style>
+  .service-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 1.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .service-benefits li {
+    position: relative;
+    padding-left: 1.75rem;
+    font-size: 1rem;
+    color: var(--color-text);
+    line-height: 1.55;
+  }
+  .service-benefits li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 18px;
+    height: 2px;
+    background: var(--color-primary);
+  }
+
+  .service-aside-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    position: sticky;
+    top: 6rem;
+  }
+  .service-aside-phone {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding: 0.5rem;
+  }
+  .service-aside-phone:hover { color: var(--color-primary); }
+
+  .related-service {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    background: var(--color-bg);
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+    color: inherit;
+    transition: transform 200ms ease;
+  }
+  .related-service:hover { transform: translateY(-2px); }
+  .related-service-image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-md);
+  }
+  .related-service-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin: 0 0 0.25rem;
+  }
+  .related-service-short {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin: 0 0 0.5rem;
+  }
+  .related-service-link {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+</style>

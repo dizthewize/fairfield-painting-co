@@ -1,0 +1,33 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  image?: string;
+}
+
+const { title, description, path = '/', image = '/og-image.svg' } = Astro.props;
+const canonical = new URL(path, Astro.site ?? site.domain).toString();
+const ogImage = new URL(image, Astro.site ?? site.domain).toString();
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<meta name="theme-color" content="#1F1B17" />
+<meta name="robots" content="index, follow" />

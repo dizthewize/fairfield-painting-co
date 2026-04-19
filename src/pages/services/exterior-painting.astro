@@ -1,0 +1,13 @@
+---
+import ServicePage from '../../components/ServicePage.astro';
+import { services } from '../../data/site';
+const service = services.find((s) => s.slug === 'exterior-painting')!;
+---
+
+<ServicePage
+  service={service}
+  title="Exterior House Painting Fairfield, CA · Weather-Tested Finishes"
+  description="Long-lasting exterior painting in Fairfield, CA. Power-washed prep, premium paints, warranty-backed. Free estimate."
+  benefitStatement="Weather-tested finishes that hold up to Solano County sun."
+  longIntro="California sun is tough on paint. Fairfield exteriors especially — the south and west faces of most homes take a beating by year five. The right prep and the right paint make the difference between five and fifteen years between repaints."
+/>

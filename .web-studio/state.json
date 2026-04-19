@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "created_at": "2026-04-19T06:25:00Z",
+  "business_name": "Fairfield Painting Co.",
+  "site_type": "service",
+  "phases": {
+    "discovery": "complete",
+    "planner": "complete",
+    "designer": "complete",
+    "builder": "pending",
+    "reviewer": "pending",
+    "deploy": "pending"
+  },
+  "deploy_enabled": true,
+  "live_url": null,
+  "last_update": null,
+  "auto_mode": true,
+  "initial_prompt": "Build me a painting website based out of Fairfield, California.",
+  "design_proof": {
+    "status": "auto_accepted",
+    "revision_count": 0,
+    "last_verdict": "PROCEED",
+    "proof_path": ".web-studio/design-proof.html"
+  }
+}

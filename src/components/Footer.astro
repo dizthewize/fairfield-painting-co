@@ -1,0 +1,81 @@
+---
+import { site, services, serviceAreas } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-surface-dark text-text-inverse mt-16 md:mt-24">
+  <div class="container-site section-py">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div>
+        <div class="font-display font-semibold text-2xl mb-3">
+          Fairfield <span class="text-primary">Painting</span> Co.
+        </div>
+        <p class="text-text-inverse/70 leading-relaxed text-sm">
+          {site.tagline}
+        </p>
+        <p class="text-text-inverse/50 text-xs mt-6">
+          {site.license}<br />
+          Fully licensed &amp; insured in California
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-display text-lg mb-4 text-text-inverse">Services</h3>
+        <ul class="space-y-2.5 text-sm text-text-inverse/80">
+          {services.map((s) => (
+            <li>
+              <a href={`/services/${s.slug}`} class="hover:text-primary transition-colors">
+                {s.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-display text-lg mb-4 text-text-inverse">Service Areas</h3>
+        <ul class="space-y-2.5 text-sm text-text-inverse/80">
+          {serviceAreas.map((a) => (
+            <li>
+              <a href={`/service-areas/${a.slug}`} class="hover:text-primary transition-colors">
+                {a.city}, CA
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-display text-lg mb-4 text-text-inverse">Contact</h3>
+        <ul class="space-y-2.5 text-sm text-text-inverse/80">
+          <li>
+            <a href={site.phoneHref} class="hover:text-primary transition-colors font-semibold text-text-inverse">
+              {site.phone}
+            </a>
+          </li>
+          <li>
+            <a href={site.emailHref} class="hover:text-primary transition-colors break-all">
+              {site.email}
+            </a>
+          </li>
+          <li class="text-text-inverse/70 leading-relaxed">
+            {site.address.street}<br />
+            {site.address.city}, {site.address.region} {site.address.postalCode}
+          </li>
+          <li class="text-text-inverse/70 leading-relaxed">
+            {site.hours}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-text-inverse/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-text-inverse/55">
+      <div>© {year} {site.name}. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="/privacy" class="hover:text-primary transition-colors">Privacy</a>
+        <a href="/sitemap-index.xml" class="hover:text-primary transition-colors">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import ServicesGrid from '../../components/ServicesGrid.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+---
+
+<Layout
+  title="Painting Services in Fairfield, CA — Interior, Exterior & More"
+  description="Interior, exterior, cabinet refinishing, deck staining & drywall repair in Fairfield, CA. Licensed & insured. Free estimates."
+  path="/services"
+>
+  <Hero
+    eyebrow="Services"
+    headline="Painting services in Fairfield, CA."
+    subheadline="From a single accent wall to a full exterior repaint, we handle residential painting across Solano County — every project starts with a free color consultation."
+    compact
+    primaryCta={{ label: 'Get a Free Estimate', href: '/contact#estimate' }}
+  />
+
+  <TrustSignalsBar />
+
+  <ServicesGrid
+    heading="Five services, one trusted crew."
+    eyebrow="What we do"
+    intro="Each service below includes materials, prep, application, and a clean-up walk-through — nothing hidden, nothing handed off to sub-contractors you didn't meet."
+  />
+
+  <FinalCTA
+    headline="Not sure which service you need?"
+    sub="Tell us about the project — we'll recommend the right scope on your free estimate walk-through."
+  />
+</Layout>

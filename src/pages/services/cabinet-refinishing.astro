@@ -1,0 +1,13 @@
+---
+import ServicePage from '../../components/ServicePage.astro';
+import { services } from '../../data/site';
+const service = services.find((s) => s.slug === 'cabinet-refinishing')!;
+---
+
+<ServicePage
+  service={service}
+  title="Cabinet Refinishing Fairfield, CA · Kitchen Refresh Without the Rebuild"
+  description="Refinish your kitchen cabinets in Fairfield, CA. Factory-smooth finish, full color match, less than half the cost of replacement."
+  benefitStatement="A new kitchen without a remodel — and at less than half the cost."
+  longIntro="Cabinet refinishing is our quiet superpower. Done right, it delivers a result indistinguishable from factory-finished replacement at a fraction of the cost and timeline."
+/>

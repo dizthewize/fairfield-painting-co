@@ -1,0 +1,13 @@
+---
+import ServicePage from '../../components/ServicePage.astro';
+import { services } from '../../data/site';
+const service = services.find((s) => s.slug === 'interior-painting')!;
+---
+
+<ServicePage
+  service={service}
+  title="Interior Painting Fairfield, CA · Clean Worksite Guarantee"
+  description="Professional interior painting in Fairfield, CA. Free color consultation, premium paints, tidy crews. Book your free estimate."
+  benefitStatement="Premium paint, clean crews, and a color-match guarantee on every wall."
+  longIntro="Interior painting is the fastest way to change how your home feels. New color, fresh trim, crisp ceilings — it reads like a bigger renovation than it actually is."
+/>

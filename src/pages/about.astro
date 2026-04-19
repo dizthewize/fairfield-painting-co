@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import TrustSignalsBar from '../components/TrustSignalsBar.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+---
+
+<Layout
+  title="About Us · Fairfield Painting Co."
+  description="Local, licensed, family-run painting crew serving Fairfield and Solano County. Our story, our promise, our standards."
+  path="/about"
+>
+  <Hero
+    eyebrow="About"
+    headline="A local painting crew built around fixable complaints."
+    subheadline="We're family-owned and operated in Fairfield, California. We built our process to fix the things homeowners actually complain about — not the things painters wish mattered."
+    compact
+  />
+
+  <TrustSignalsBar />
+
+  <section class="section-py">
+    <div class="container-site grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-7 prose-body">
+        <span class="eyebrow mb-3 block">Our story</span>
+        <h2 class="font-display font-medium text-3xl md:text-4xl tracking-tight mb-6">
+          Painting doesn't have to be stressful.
+        </h2>
+        <p>
+          We started Fairfield Painting Co. with a simple idea: painting projects don't have to be
+          stressful. Most of the complaints homeowners have about painters — crews showing up late,
+          mess left behind, prices that creep up mid-project, no-shows on warranty calls — are fixable.
+          We built our process around fixing them.
+        </p>
+        <p>
+          Today we serve Fairfield, Vacaville, Suisun City, Vallejo, Napa, and the surrounding
+          Solano County communities. Every job runs through the same crew that walked your property
+          and wrote the quote. No handoffs. No surprise sub-contractors. No "different crew than the
+          one you met" on day one.
+        </p>
+      </div>
+
+      <aside class="lg:col-span-5">
+        <div class="about-promise">
+          <h3 class="font-display font-medium text-2xl mb-5">Our promise</h3>
+          <ul>
+            <li>
+              <strong>One crew, start to finish.</strong>
+              <span>Same people who quote your job do the work.</span>
+            </li>
+            <li>
+              <strong>Fixed-price estimates.</strong>
+              <span>The number on the quote is the number on the invoice.</span>
+            </li>
+            <li>
+              <strong>Clean worksite, every evening.</strong>
+              <span>We tidy up at the end of every day.</span>
+            </li>
+            <li>
+              <strong>Real warranties, honored.</strong>
+              <span>2-year interior, 3-year exterior workmanship warranty.</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="bg-surface section-py">
+    <div class="container-site grid md:grid-cols-3 gap-8">
+      <div class="about-stat">
+        <span class="about-stat-num">Licensed</span>
+        <span class="about-stat-label">&amp; insured in California. We'll send certificates before the job.</span>
+      </div>
+      <div class="about-stat">
+        <span class="about-stat-num">W-2 only</span>
+        <span class="about-stat-label">No day-labor on your property — every crew member is on our payroll.</span>
+      </div>
+      <div class="about-stat">
+        <span class="about-stat-num">PDCA</span>
+        <span class="about-stat-label">Members of the Painting &amp; Decorating Contractors of America.</span>
+      </div>
+    </div>
+  </section>
+
+  <TestimonialsSection />
+
+  <FinalCTA headline="Meet the crew. Get a free estimate." showForm />
+</Layout>
+
+<style>
+  .about-promise {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+  }
+  .about-promise ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .about-promise li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  .about-promise li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    width: 14px;
+    height: 2px;
+    background: var(--color-primary);
+  }
+  .about-promise strong {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.125rem;
+    color: var(--color-text);
+  }
+  .about-promise span:not(strong) {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+  }
+
+  .about-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem 0;
+    border-top: 2px solid var(--color-accent);
+  }
+  .about-stat-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+    color: var(--color-accent);
+  }
+  .about-stat-label {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+  }
+</style>

@@ -1,0 +1,13 @@
+---
+import ServicePage from '../../components/ServicePage.astro';
+import { services } from '../../data/site';
+const service = services.find((s) => s.slug === 'drywall-repair')!;
+---
+
+<ServicePage
+  service={service}
+  title="Drywall Repair Fairfield, CA · Holes, Cracks & Texture Matching"
+  description="Fast drywall repair and texture matching in Fairfield, CA. Seamless patch-and-paint from one crew."
+  benefitStatement="Holes, cracks, and texture matching — patched and painted by one crew."
+  longIntro="Most painters outsource drywall repair and it shows — you end up with texture mismatches, visible patches, or mysterious bumps under fresh paint. We handle it all in-house so the repair disappears completely."
+/>
